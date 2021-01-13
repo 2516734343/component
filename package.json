@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -12,9 +13,13 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "webpack-dev-server --open --mode production && npm run stop:proxy && npm run start:proxy && npm run start:web",
+    "watch": "webpack --watch",
+    "build": "webpack --mode production",
+    "dev": "webpack  --mode development& webpack-dev-server --open  --mode development",
+    "start:proxy": "npm run stop:proxy && node chore/runProxy.js",
+    "start:web": "webpack --config webpackConfig.js",
+    "stop:proxy": "lsof -ti :3004 | xargs kill -9",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,5 +39,29 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "4.0.0-alpha.2",
+    "interpolate-html-plugin": "^3.0.0",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "4.42.1",
+    "webpack-bundle-analyzer": "3.6.1",
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "3.10.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
