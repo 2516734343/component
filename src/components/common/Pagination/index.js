@@ -1,5 +1,5 @@
 import React, {Component, useMemo, useState} from "react";
-import './index.less';
+import './index.css';
 import Select from "../Select";
 import Input from "../Input";
 

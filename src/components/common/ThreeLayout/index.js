@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import './index.less';
+import css from './index.less';
 export default function ThreeLayOut(props){
     const defaultProps = {
         lefWidth: 200,
@@ -8,17 +8,17 @@ export default function ThreeLayOut(props){
         gap: 0,
     };
     const datas = Object.assign({},defaultProps, props);
-    return <div className={'three-layout'} style={{
+    return <div className={css.threeLayout} style={{
         minWidth: datas.minWidth
     }}>
         <div className={'main'}>
             {props.children}
         </div>
-        <div className={'aside-left'} style={{
+        <div className={css.asideLeft} style={{
             width: datas.lefWidth,
             marginRight: datas.gap
         }}>{props.left}</div>
-        <div className={'aside-right'} style={{
+        <div className={css.asideRight} style={{
             width: datas.rightWidth,
             marginLeft: datas.gap
         }}>{props.right}</div>

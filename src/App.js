@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import css from './App.less';
+import css from './App';
 import Ref from "./components/ref/Ref";
 import AutoFocusTextInput from './components/ref/AutoFocusTextInput'
 import OldContext from "./components/context/OldContext";
@@ -19,8 +19,9 @@ import PaginationTest from './components/common/Pagination/Test';
 import TestInput from './components/common/Input/testInput';
 
 function App() {
+    console.log(css);
   return (
-      <div className="App">
+      <div className={css.App}>
         {/*<Ref/>*/}
         {/*<AutoFocusTextInput/>*/}
         {/*<OldContext/>*/}

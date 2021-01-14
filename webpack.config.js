@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlPlugin = require('html-webpack-plugin');
+
 module.exports = {
     devtool: 'inline-source-map',
     entry: {
@@ -10,74 +11,76 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build')
     },
-    resolve: {extensions: ['.js', '.jsx', '.css', '.less', '.json', ]},
+    resolve: {extensions: ['.js', '.jsx', '.less', '.css', '.json',]},
     module: {
-        rules: [{
-            test: /\.css$/,
-            loader: ['style-loader', 'css-loader']
-        }, {
-            test: /\.scss$/,
-            loader: ['style-loader', 'css-loader', 'sass-loader']
-        },
-        //     {
-        //     test: /\.less$/,
-        //     use: [
-        //         {
-        //             loader: 'css-loader',
-        //             options: {
-        //                 modules: {
-        //                     localIdentName: '[path][name]---[local]---[hash:base64:5]'
-        //                 },
-        //                 // importLoaders: 1,
-        //             }
-        //         },
-        //         {
-        //             loader: 'less-loader',
-        //             // options: {
-        //             //     // javascriptEnabled: true,
-        //             // }
-        //         }
-        //     ]
-        // },
+        rules: [
+            {
+                test: /\.css$/,
+                // loader: 'style-loader!css-loader?modules' // 写法1
+                // loader: "style-loader!css-loader?modules&localIdentName=[path][name]---[local]---[hash:base64:5]",
+                use: [ // 写法2
+                    {
+                        loader: "style-loader",
+                        options: {
+                            esModule: true, // 开启es模块的语法
+                            modules: {
+                                namedExport: false,//本地环境启用/禁用 export 的 ES 模块。
+                            },
 
-            // Less 解析配置
+                        }
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                                localIdentContext: path.resolve(__dirname, "src"),
+                            },
+                            importLoaders: 2,
+                            esModule: true,
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.less$/,
-                exclude: lessModuleRegex,
-                use: getStyleLoaders(
+                use: [
+                    'style-loader',
                     {
-                        importLoaders: 2,
-                        sourceMap: isEnvProduction && shouldUseSourceMap,
-                        modules: true,//开启
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: '[path][name]---[local]---[hash:base64:5]'
+                            },
+                            importLoaders: 1,
+                        }
                     },
-                    'less-loader'
-                ),
-                sideEffects: true,
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                javascriptEnabled: true,
+                            }
+                        },
+                    },
+                ]
             },
             {
-                test: lessModuleRegex,
-                use: getStyleLoaders(
-                    {
-                        importLoaders: 2,
-                        sourceMap: isEnvProduction && shouldUseSourceMap,
-                        modules: true,
-                        getLocalIdent: getCSSModuleLocalIdent,
-                    },
-                    'less-loader'
-                )
+                test: /\.scss$/,
+                loader: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-            test: /\.(png|svg|jpg|gif|ico)$/,
-            loader: 'url-loader',
-            options: {
-                limit: 10000,
-                name: 'img/[name].[hash:7].[ext]'
-            }
-        }, {
-            test: /\.(js|jsx)$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/
-        }]
+                test: /\.(png|svg|jpg|gif|ico)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: 'img/[name].[hash:7].[ext]'
+                }
+            }, {
+                test: /\.(js|jsx)$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/
+            }]
     },
     devServer: {
         port: 3003,
@@ -85,7 +88,7 @@ module.exports = {
         hot: true,
         open: true,
         proxy: {
-            '/api': "https://open.duyiedu.com",
+            '/api': "https://open.duyiedu.com", // 配置代理
         },
     },
     plugins: [
