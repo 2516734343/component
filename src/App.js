@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import css from './App.less';
 import Ref from "./components/ref/Ref";
 import AutoFocusTextInput from './components/ref/AutoFocusTextInput'
 import OldContext from "./components/context/OldContext";
@@ -46,6 +46,7 @@ function App() {
         {/*<TestModal/>*/}
         <PaginationTest/>
         {/*<TestInput/>*/}
+        <p className={css.red}>111</p>
       </div>
   );
 }

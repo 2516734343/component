@@ -10,7 +10,7 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build')
     },
-    resolve: {extensions: ['.js', '.jsx', '.css', '.json', '.less']},
+    resolve: {extensions: ['.js', '.jsx', '.css', '.less', '.json', ]},
     module: {
         rules: [{
             test: /\.css$/,
@@ -18,7 +18,55 @@ module.exports = {
         }, {
             test: /\.scss$/,
             loader: ['style-loader', 'css-loader', 'sass-loader']
-        }, {
+        },
+        //     {
+        //     test: /\.less$/,
+        //     use: [
+        //         {
+        //             loader: 'css-loader',
+        //             options: {
+        //                 modules: {
+        //                     localIdentName: '[path][name]---[local]---[hash:base64:5]'
+        //                 },
+        //                 // importLoaders: 1,
+        //             }
+        //         },
+        //         {
+        //             loader: 'less-loader',
+        //             // options: {
+        //             //     // javascriptEnabled: true,
+        //             // }
+        //         }
+        //     ]
+        // },
+
+            // Less 解析配置
+            {
+                test: /\.less$/,
+                exclude: lessModuleRegex,
+                use: getStyleLoaders(
+                    {
+                        importLoaders: 2,
+                        sourceMap: isEnvProduction && shouldUseSourceMap,
+                        modules: true,//开启
+                    },
+                    'less-loader'
+                ),
+                sideEffects: true,
+            },
+            {
+                test: lessModuleRegex,
+                use: getStyleLoaders(
+                    {
+                        importLoaders: 2,
+                        sourceMap: isEnvProduction && shouldUseSourceMap,
+                        modules: true,
+                        getLocalIdent: getCSSModuleLocalIdent,
+                    },
+                    'less-loader'
+                )
+            },
+            {
             test: /\.(png|svg|jpg|gif|ico)$/,
             loader: 'url-loader',
             options: {

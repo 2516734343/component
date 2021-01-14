@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import './index.css';
+import './index.less';
 export default function ThreeLayOut(props){
     const defaultProps = {
         lefWidth: 200,
