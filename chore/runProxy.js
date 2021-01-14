@@ -17,7 +17,6 @@ app.use('/api', proxy({
     //     proxyRes.setHeader('Content-Type', 'application/json;charset=UTF-8');
     // }
 }));
-console.log(222);
 app.listen(CONFIG.port); //监听端口号
 // const server = app.listen(CONFIG.port); //监听端口号
 // console.log('111', server);

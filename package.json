@@ -19,7 +19,7 @@
     "dev": "webpack  --mode development& webpack-dev-server --open  --mode development",
     "start:proxy": "npm run stop:proxy && node chore/runProxy.js",
     "start:web": "webpack --config webpackConfig.js",
-    "stop:proxy": "lsof -ti :3004 | xargs kill -9",
+    "stop:proxy": "lsof -ti :3003 | xargs kill -9",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
