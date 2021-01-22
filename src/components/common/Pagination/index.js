@@ -1,7 +1,7 @@
 import React, {Component, useMemo, useState} from "react";
 import './index.css';
 import Select from "../Select";
-import Input from "../Input";
+import Input from "../Input/Input";
 
 /**
  * 1、current
