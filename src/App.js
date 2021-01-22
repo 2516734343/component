@@ -1,25 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
-import css from './App';
-import Ref from "./components/ref/Ref";
-import AutoFocusTextInput from './components/ref/AutoFocusTextInput'
-import OldContext from "./components/context/OldContext";
-import Example from './components/hook/UseContext';
-import ReduceDemo from './components/hook/UseReducer';
-import Example2 from './components/hook/useReducerDemo/Example2';
-import UseMemo from './components/hook/UseMemo';
-import UseRef from './components/hook/UseRef';
-import Example9 from './components/hook/自定义hook';
+import css from './App.less';
 import Test from './components/common/CheckBoxGroup/test';
 import TestRadio from './components/common/RadioBoxGroup/testRadio';
 import TestSelect from './components/common/Select/testSelect';
 import ThreeLayOut from "./components/common/ThreeLayout";
 // import TestModal from './components/common/Modal/TestModal';
 import PaginationTest from './components/common/Pagination/Test';
-import TestInput from './components/common/Input/testInput';
+import TestInput from './components/common/Input/test/TestInput';
+import TestSearch from "./components/common/Input/test/TestSearch";
 
 function App() {
-    console.log(css);
   return (
       <div className={css.App}>
         {/*<Ref/>*/}
@@ -45,9 +36,9 @@ function App() {
         {/*    </div>*/}
         {/*</ThreeLayOut>*/}
         {/*<TestModal/>*/}
-        <PaginationTest/>
-        {/*<TestInput/>*/}
-        <p className={css.red}>111</p>
+        {/*<PaginationTest/>*/}
+        <TestInput/>
+        <TestSearch/>
       </div>
   );
 }

@@ -1,8 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlPlugin = require('html-webpack-plugin');
-
+process.env.NODE_ENV="development";
 module.exports = {
+    // mode: "development",
+    mode: process.env.NODE_ENV,
     devtool: 'inline-source-map',
     entry: {
         index: './src/index.js'
@@ -33,7 +35,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: {
-                                localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                                localIdentName: "[name]__[local]__[hash:base64:5]",
                                 localIdentContext: path.resolve(__dirname, "src"),
                             },
                             importLoaders: 2,
@@ -50,7 +52,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules: {
-                                localIdentName: '[path][name]---[local]---[hash:base64:5]'
+                                localIdentName: '[name]__[local]__[hash:base64:5]'
                             },
                             importLoaders: 1,
                         }
