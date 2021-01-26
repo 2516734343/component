@@ -9,6 +9,11 @@ import ThreeLayOut from "./components/common/ThreeLayout";
 import PaginationTest from './components/common/Pagination/Test';
 import TestInput from './components/common/Input/test/TestInput';
 import TestSearch from "./components/common/Input/test/TestSearch";
+import Chat from './learn/websocket/chat';
+import ChatRooms from './learn/websocket/client';
+import MovePanpel from './learn/renderProps/MovePanpel';
+import { TestMovePanpel } from './learn/renderProps/TestMovePanpel';
+import TestHocMovePanpel from './learn/renderProps/TestHocMovePanpel';
 
 function App() {
   return (
@@ -39,6 +44,11 @@ function App() {
         {/*<PaginationTest/>*/}
         <TestInput/>
         <TestSearch/>
+          {/*<Chat/>*/}
+          {/*<ChatRooms/>*/}
+          {/*<MovePanpel/>*/}
+          {/*<TestMovePanpel/>*/}
+          <TestHocMovePanpel/>
       </div>
   );
 }

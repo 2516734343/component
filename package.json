@@ -10,7 +10,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "websocket": "^1.0.33"
   },
   "scripts": {
     "start": "webpack-dev-server --open --mode production && npm run stop:proxy && npm run start:proxy && npm run start:web",
